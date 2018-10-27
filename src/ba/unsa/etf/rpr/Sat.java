@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr;
+import java.io.PrintStream;
 
 public class Sat {
     private int sati;
@@ -9,12 +10,12 @@ public class Sat {
         this.minute = minute;
         this.sekunde = sekunde;
     }
-    public void Postavi(int sati, int minute, int sekunde) {
+    void Postavi(int sati, int minute, int sekunde) {
         this.sati = sati;
         this.minute = minute;
         this.sekunde = sekunde;
     }
-    public void Sljedeci() {
+    void Sljedeci() {
         this.sekunde++;
         if (this.sekunde == 60) {
             this.sekunde = 0; this.minute++;
@@ -26,7 +27,7 @@ public class Sat {
             this.sati = 0;
         }
     }
-    public void Prethodni() {
+    void Prethodni() {
         this.sekunde--;
         if (this.sekunde == -1) {
             this.sekunde = 59; this.minute--;
@@ -37,5 +38,15 @@ public class Sat {
         if (this.sati == -1) {
             this.sati = 23;
         }
+    }
+    void PomjeriZa(int pomak) {
+        if (pomak > 0) for (int i = 0; i < pomak; i++) this.Sljedeci();
+        else for (int i = 0; i > pomak; i--) this.Prethodni();
+    }
+    final int DajSate() { return this.sati; }
+    final int DajMinute() { return this.minute; }
+    final int DajSekunde() { return this.sekunde; }
+    final void Ispisi() {
+        System.out.println(Integer.toString(this.DajSate())+":"+Integer.toString(this.DajMinute())+":"+Integer.toString(this.DajSekunde()));
     }
    }
